@@ -27,6 +27,7 @@ namespace _23._05._18
             //root.InsertAfter(status, title[0]);
             //root.InsertBefore(status, title[0]);
 
+            CreateElement(doc, "TestElement");
 
             doc.Save("view-source_https___habr.com_rss_interesting_.xml");
 
@@ -35,6 +36,7 @@ namespace _23._05._18
             Console.WriteLine("-------------------");
 
             PrintXML(doc);
+
         }
 
         public static void PrintXML(XmlDocument doc)
@@ -65,7 +67,14 @@ namespace _23._05._18
             XmlElement element = doc.CreateElement(elementName);
             element.InnerText = DateTime.Now.ToString();
 
-            doc.AppendChild(element);
+            XmlAttribute xmlAttr = doc.CreateAttribute("Id");
+            xmlAttr.InnerText = "551704";
+
+            element.Attributes.Append(xmlAttr);
+
+            XmlElement root = doc.DocumentElement;
+            root.AppendChild(element);
+           
 
             
         }
